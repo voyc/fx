@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <title>test Game</title>
+    <meta charset="utf-8">
+	<script>
+		var voyc = {};
+		var log = true;
+		window.addEventListener('load', function(evt) {
+			voyc.game = new voyc.Game();
+			voyc.game.onRender = function(elapsed) {
+				document.getElementById('slide').style.left = Math.round(this.elapsed) + "px";
+			};
+			document.getElementById('startbtn').addEventListener('click', function(evt) {
+				voyc.game.start();
+			}, false);
+			document.getElementById('stopbtn').addEventListener('click', function(evt) {
+				voyc.game.stop();
+			}, false);
+		}, false);
+	</script>
+    <script src="game.js"></script>
+	<style>
+	#slide {
+		width:100px;
+		height:100px;
+		position:absolute;
+		background-color:red;
+	}
+	</style>
+</head>
+<body>
+	<button id=startbtn>Start</button>
+	<button id=stopbtn>Stop</button>
+	<div id=slide></div>
+</body>
+</html>

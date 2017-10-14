@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<title>sound test</title>
+		<script>
+			var voyc = {};
+
+			var urlpattern = 'assets/sounds/%sound%.mp3';
+			var fxfiles = [
+				'explode',
+				'klunk',
+			];
+
+			window.addEventListener('load', function() {
+				soundfx = new voyc.Sound();
+				soundfx.loadSounds(urlpattern, fxfiles, function(success) {
+					document.getElementById('msg').innerHTML = 'loaded ' + (success) ? 'success' : 'fail';
+				});
+
+				document.getElementById('btnExplode').addEventListener('click', function() { soundfx.play( 'explode')}, false);
+				document.getElementById('btnKlunk').addEventListener('click', function() { soundfx.play( 'klunk')}, false);
+			}, false);
+		</script>
+		<script src='sound.js'></script>
+	</head>
+	<body>
+		<h1>sound test</h1>
+		<input type=button id=btnExplode value='Explode' /><br/>
+		<input type=button id=btnKlunk value=Klunk /><br/>
+		<p id='msg'>loading...</p>
+		</body>
+</html>

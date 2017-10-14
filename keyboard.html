@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title>test Keyboard</title>
+    <meta charset="utf-8">
+	<script>
+		var voyc = {};
+		var log = true;
+		window.addEventListener('load', function(evt) {
+			voyc.keyboard = new voyc.Keyboard();
+			voyc.keyboard.listenForEvents([
+				voyc.Key.LEFT, 
+				voyc.Key.RIGHT, 
+				voyc.Key.UP, 
+				voyc.Key.DOWN
+				voyc.Key.C
+			]);
+			document.getElementById('testbtn').addEventListener('click', function(evt) {
+			    var left  = (voyc.keyboard.isDown(voyc.Key.LEFT)) ? '1' : '0';
+			    var right = (voyc.keyboard.isDown(voyc.Key.RIGHT)) ? '1' : '0';
+			    var up    = (voyc.keyboard.isDown(voyc.Key.UP)) ? '1' : '0';
+			    var down  = (voyc.keyboard.isDown(voyc.Key.DOWN)) ? '1' : '0';
+			    var shift = (voyc.keyboard.isShift()) ? 's' : '0';
+				log&&console.log('keys ' + left + ' ' + right + ' ' + up + ' ' + down + ' ' + shift);
+			}, false);
+		}, false);
+	</script>
+    <script src="keyboard.js"></script>
+</head>
+<body>
+	<button id=testbtn>Test</button>
+</body>
+</html>
