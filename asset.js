@@ -65,7 +65,7 @@ voyc.Asset.prototype.loadSuccess = function(attempt) {
 	if (this.imagecount >= this.pathcount) {
 		this.cb(true, '');
 	}
-	voyc.dispatcher.publish(voyc.Event.FileLoaded, this, {file:attempt.key});
+	//(new voyc.Observer()).publish(voyc.Event.FileLoaded, this, {file:attempt.key});
 }
 
 voyc.Asset.prototype.loadFail = function(attempt) {
