@@ -15,6 +15,8 @@ voyc.Game = function() {
 		this.frames = 0;
 		this.fps = 0;
 	}
+
+	this.maxfps = 0 // public
 }
 
 voyc.Game.prototype.start = function () {
@@ -39,16 +41,19 @@ voyc.Game.prototype.toggle = function () {
 }
 
 voyc.Game.prototype.step = function (timestamp) {
+	if (!this.starttime) this.starttime = timestamp;
 	if (log) {
-		if (!this.starttime) this.starttime = timestamp;
 		this.elapsed = timestamp - this.starttime;
 		this.frames++;
 		this.fps = (this.frames / (this.elapsed / 1000));
 	}
+
 	var delta = timestamp - this.previousTimestamp;
-    this.previousTimestamp = timestamp;
-	this.render(timestamp);
 	if (this.running) {
+		if (delta > (1000 / this.maxfps)) {
+			this.render(timestamp);
+			this.previousTimestamp = timestamp;
+		}
 		var self = this;
 		window.requestAnimationFrame(function(timestamp) {self.step(timestamp)});
 	}
